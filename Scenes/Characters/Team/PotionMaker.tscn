@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Images/Characters/Team/TeamMates.png" type="Texture" id=1]
+[ext_resource path="res://Images/UI/MissIndicator.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Characters/TeamScripts/PotionMakerScript.gd" type="Script" id=3]
+[ext_resource path="res://Images/Effects/BattleIndicator.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 32, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Miss"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.0130129, 0.0659321, 0 ), Vector3( -0.0130129, 0.151001, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.0130129, 0.0659321, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "BattleIndicate"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.00854102, 0.111471, 0 ), Vector3( 0.00854102, 0.181829, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1.4, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.00854102, 0.111471, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[node name="PotionMaker" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="MissIndicator" type="Sprite3D" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0130129, 0.0659321, 0 )
+opacity = 0.0
+texture = ExtResource( 2 )
+
+[node name="MissAnimationPlayer" type="AnimationPlayer" parent="MissIndicator"]
+anims/Miss = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="BattleIndicator" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00854102, 0.111471, 0 )
+opacity = 0.0
+texture = ExtResource( 4 )
+
+[node name="BattleIndicatorAnimationPlayer" type="AnimationPlayer" parent="BattleIndicator"]
+anims/BattleIndicate = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[connection signal="animation_finished" from="BattleIndicator/BattleIndicatorAnimationPlayer" to="." method="_on_BattleIndicatorAnimationPlayer_animation_finished"]

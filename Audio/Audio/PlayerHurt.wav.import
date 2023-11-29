@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PlayerHurt.wav-92506dfae5d63c4ccc4bb555b0e4b94e.sample"
+
+[deps]
+
+source_file="res://Audio/Audio/PlayerHurt.wav"
+dest_files=[ "res://.import/PlayerHurt.wav-92506dfae5d63c4ccc4bb555b0e4b94e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

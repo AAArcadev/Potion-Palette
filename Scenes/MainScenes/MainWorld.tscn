@@ -1,0 +1,3649 @@
+[gd_scene load_steps=181 format=2]
+
+[ext_resource path="res://Scenes/UI/Brewing/Objects/GlassBottle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/UI/Brewing/Objects/Cauldron.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tilemaps/MainTilemap.tres" type="MeshLibrary" id=3]
+[ext_resource path="res://Scenes/Characters/Team/Tank.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Characters/Team/Knight.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Characters/Team/Archer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Characters/Team/Wizard.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Characters/Team/PotionMaker.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/UI/Brewing/GUI/ResetButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Images/Effects/UI/Brewing/BrewingBubble1.png" type="Texture" id=10]
+[ext_resource path="res://Images/Effects/UI/Brewing/BrewingBubble2.png" type="Texture" id=11]
+[ext_resource path="res://Images/Effects/UI/Brewing/BrewingBubble3.png" type="Texture" id=12]
+[ext_resource path="res://Images/UI/GuiPanel.png" type="Texture" id=13]
+[ext_resource path="res://Fonts/FieldGuide.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://Images/UI/Health.png" type="Texture" id=15]
+[ext_resource path="res://Images/Characters/Team/TeammateProfile/Tank.png" type="Texture" id=16]
+[ext_resource path="res://Images/Characters/Team/TeammateProfile/Knight.png" type="Texture" id=17]
+[ext_resource path="res://Images/Characters/Team/TeammateProfile/wizard.png" type="Texture" id=18]
+[ext_resource path="res://Images/Characters/Team/TeammateProfile/KnightReal.png" type="Texture" id=19]
+[ext_resource path="res://Images/EnvironmentalObject/Hanging/HangingLights.png" type="Texture" id=20]
+[ext_resource path="res://Images/EnvironmentalObject/Ground/Door.png" type="Texture" id=21]
+[ext_resource path="res://Scripts/Main/MainWorldScript.gd" type="Script" id=22]
+[ext_resource path="res://Scenes/Characters/Enemy/Enemy.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/UI/BuffButton.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/UI/Brewing/Objects/CookBook.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scripts/UI/Brewing/GUI/CookingMeterScript.gd" type="Script" id=26]
+[ext_resource path="res://Scenes/UI/MouseCursor.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Images/UI/Brewing/Objects/CookBook/ColorCircles.png" type="Texture" id=28]
+[ext_resource path="res://Audio/Music/MainGameMusic.mp3" type="AudioStream" id=29]
+[ext_resource path="res://Images/Characters/Team/TeamMates.png" type="Texture" id=30]
+[ext_resource path="res://Images/EnvironmentalObject/Ground/CampRock.png" type="Texture" id=31]
+[ext_resource path="res://Images/EnvironmentalObject/Ground/CampStick.png" type="Texture" id=32]
+[ext_resource path="res://Scripts/UI/GUI/PauseScreenScript.gd" type="Script" id=33]
+[ext_resource path="res://Images/UI/GraveStones.png" type="Texture" id=34]
+[ext_resource path="res://Scripts/Main/CameraScript.gd" type="Script" id=35]
+[ext_resource path="res://Images/Effects/GlowingLight.png" type="Texture" id=36]
+[ext_resource path="res://Images/UI/Brewing/Objects/GlassBottle.png" type="Texture" id=37]
+[ext_resource path="res://Images/UI/CoockBookStains.png" type="Texture" id=38]
+[ext_resource path="res://Images/UI/Brewing/Objects/GlassBottleLiquid.png" type="Texture" id=39]
+[ext_resource path="res://Images/UI/buffs.png" type="Texture" id=40]
+[ext_resource path="res://Images/UI/HealEffect.png" type="Texture" id=41]
+[ext_resource path="res://Images/UI/Brewing/GUI/RightPressIcon.png" type="Texture" id=42]
+[ext_resource path="res://Images/UI/Brewing/GUI/WrongPressIcon.png" type="Texture" id=43]
+[ext_resource path="res://Scenes/MainScenes/BattleScene.tscn" type="PackedScene" id=44]
+[ext_resource path="res://Images/UI/BattleHearts.png" type="Texture" id=45]
+[ext_resource path="res://Scripts/UI/GUI/FailSafeSwitchTurnButton.tscn" type="PackedScene" id=46]
+
+[sub_resource type="ProceduralSky" id=137]
+sky_top_color = Color( 0, 0, 0, 1 )
+sky_horizon_color = Color( 0, 0, 0, 1 )
+ground_bottom_color = Color( 0, 0, 0, 1 )
+ground_horizon_color = Color( 0, 0, 0, 1 )
+sun_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 137 )
+
+[sub_resource type="AnimatedTexture" id=11]
+frames = 3
+frame_0/texture = ExtResource( 10 )
+frame_1/texture = ExtResource( 11 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 12 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="Gradient" id=12]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "Brew"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 507, 509 ), Vector2( 501, 509 ), Vector2( 507, 509 ), Vector2( 509, 509 ), Vector2( 507, 509 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 507, 509 ) ]
+}
+
+[sub_resource type="Gradient" id=94]
+offsets = PoolRealArray( 0, 0.504532, 1 )
+colors = PoolColorArray( 0.882353, 0.12549, 0.176471, 1, 0.901961, 0.447059, 0.0862745, 0.498039, 0.929412, 0.839216, 0, 0 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Pour"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera/UIHolder/BrewingHolder/GlassBottle:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 24.9543, -25.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera/UIHolder/BrewingHolder/GlassBottle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 74, 525 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera/UIHolder/BrewingHolder/GlassBottle:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=75]
+resource_name = "Pour"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 25.0, -25.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=76]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=77]
+resource_name = "Pour"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 25.0, -25.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=78]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=39]
+extents = Vector2( 30, 9.5 )
+
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 8.5, 28.5 )
+
+[sub_resource type="RectangleShape2D" id=41]
+extents = Vector2( 20.1875, 46.5 )
+
+[sub_resource type="AtlasTexture" id=130]
+atlas = ExtResource( 42 )
+region = Rect2( 80, 0, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=129]
+atlas = ExtResource( 42 )
+region = Rect2( 0, 0, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=128]
+atlas = ExtResource( 42 )
+region = Rect2( 160, 8, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=131]
+atlas = ExtResource( 42 )
+region = Rect2( 0, 8, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=127]
+atlas = ExtResource( 42 )
+region = Rect2( 80, 8, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=133]
+atlas = ExtResource( 42 )
+region = Rect2( 240, 0, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=132]
+atlas = ExtResource( 42 )
+region = Rect2( 160, 0, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=134]
+atlas = ExtResource( 42 )
+region = Rect2( 80, 16, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=135]
+atlas = ExtResource( 42 )
+region = Rect2( 0, 16, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=125]
+atlas = ExtResource( 42 )
+region = Rect2( 240, 8, 80, 8 )
+
+[sub_resource type="AtlasTexture" id=126]
+atlas = ExtResource( 42 )
+region = Rect2( 160, 16, 80, 8 )
+
+[sub_resource type="SpriteFrames" id=119]
+animations = [ {
+"frames": [ SubResource( 130 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 129 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 128 ) ],
+"loop": true,
+"name": "6",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 131 ) ],
+"loop": true,
+"name": "4",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 127 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 133 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 132 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 134 ) ],
+"loop": true,
+"name": "9",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 135 ) ],
+"loop": true,
+"name": "8",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 125 ) ],
+"loop": true,
+"name": "7",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 126 ) ],
+"loop": true,
+"name": "10",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=121]
+atlas = ExtResource( 43 )
+region = Rect2( 24, 0, 24, 8 )
+
+[sub_resource type="AtlasTexture" id=120]
+atlas = ExtResource( 43 )
+region = Rect2( 0, 0, 24, 8 )
+
+[sub_resource type="AtlasTexture" id=123]
+atlas = ExtResource( 43 )
+region = Rect2( 24, 8, 24, 8 )
+
+[sub_resource type="AtlasTexture" id=122]
+atlas = ExtResource( 43 )
+region = Rect2( 0, 8, 24, 8 )
+
+[sub_resource type="SpriteFrames" id=124]
+animations = [ {
+"frames": [ SubResource( 121 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 120 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 123 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 122 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=15]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="DynamicFont" id=42]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 16 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 17 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 18 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 19 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=24]
+animations = [ {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ), SubResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 27 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ) ],
+"loop": true,
+"name": "New Anim 1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 31 ), SubResource( 31 ), SubResource( 31 ), SubResource( 31 ), SubResource( 31 ), SubResource( 31 ) ],
+"loop": true,
+"name": "New Anim 2",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=25]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=103]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="Animation" id=159]
+resource_name = "FadeInEnd"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=47]
+resource_name = "FadeOut"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+
+[sub_resource type="Animation" id=48]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Shader" id=138]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/VHS-and-CRT-monitor-effect
+
+This shader is under CC0 license. Feel free to use, improve and 
+change this shader according to your needs and consider sharing 
+the modified result to godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+//*** IMPORTANT! ***/ 
+// - If you are using this shader to affect the node it is applied to set 'overlay' to false (unchecked in the instepctor).
+// - If you are using this shader as an overlay, and want the shader to affect the nodes below in the Scene hierarchy,
+//   set 'overlay' to true (checked in the inspector).
+// On Mac there is potentially a bug causing this to not work properly. If that is the case and you want to use the shader as an overlay
+// change all \"overlay ? SCREEN_TEXTURE : TEXTURE\" to only \"SCREEN_TEXTURE\" on lines 129-140, and \"vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV);\"
+// to \"vec2 uv = warp(SCREEN_UV);\" on line 98.
+uniform bool overlay = false;
+
+uniform float scanlines_opacity : hint_range(0.0, 1.0) = 0.4;
+uniform float scanlines_width : hint_range(0.0, 0.5) = 0.25;
+uniform float grille_opacity : hint_range(0.0, 1.0) = 0.3;
+uniform vec2 resolution = vec2(640.0, 480.0); // Set the number of rows and columns the texture will be divided in. Scanlines and grille will make a square based on these values
+
+uniform bool pixelate = true; // Fill each square (\"pixel\") with a sampled color, creating a pixel look and a more accurate representation of how a CRT monitor would work.
+
+uniform bool roll = true;
+uniform float roll_speed = 8.0; // Positive values are down, negative are up
+uniform float roll_size : hint_range(0.0, 100.0) = 15.0;
+uniform float roll_variation : hint_range(0.1, 5.0) = 1.8; // This valie is not an exact science. You have to play around with the value to find a look you like. How this works is explained in the code below.
+uniform float distort_intensity : hint_range(0.0, 0.2) = 0.05; // The distortion created by the rolling effect.
+
+uniform float noise_opacity : hint_range(0.0, 1.0) = 0.4;
+uniform float noise_speed = 5.0; // There is a movement in the noise pattern that can be hard to see first. This sets the speed of that movement.
+
+uniform float static_noise_intensity : hint_range(0.0, 1.0) = 0.06;
+
+uniform float aberration : hint_range(-1.0, 1.0) = 0.03; // Chromatic aberration, a distortion on each color channel.
+uniform float brightness = 1.4; // When adding scanline gaps and grille the image can get very dark. Brightness tries to compensate for that.
+uniform bool discolor = true; // Add a discolor effect simulating a VHS
+
+uniform float warp_amount :hint_range(0.0, 5.0) = 1.0; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
+uniform bool clip_warp = false;
+
+uniform float vignette_intensity = 0.4; // Size of the vignette, how far towards the middle it should go.
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+
+// Used by the noise functin to generate a pseudo random value between 0.0 and 1.0
+vec2 random(vec2 uv){
+    uv = vec2( dot(uv, vec2(127.1,311.7) ),
+               dot(uv, vec2(269.5,183.3) ) );
+    return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
+}
+
+// Generate a Perlin noise used by the distortion effects
+float noise(vec2 uv) {
+    vec2 uv_index = floor(uv);
+    vec2 uv_fract = fract(uv);
+
+    vec2 blur = smoothstep(0.0, 1.0, uv_fract);
+
+    return mix( mix( dot( random(uv_index + vec2(0.0,0.0) ), uv_fract - vec2(0.0,0.0) ),
+                     dot( random(uv_index + vec2(1.0,0.0) ), uv_fract - vec2(1.0,0.0) ), blur.x),
+                mix( dot( random(uv_index + vec2(0.0,1.0) ), uv_fract - vec2(0.0,1.0) ),
+                     dot( random(uv_index + vec2(1.0,1.0) ), uv_fract - vec2(1.0,1.0) ), blur.x), blur.y) * 0.5 + 0.5;
+}
+
+// Takes in the UV and warps the edges, creating the spherized effect
+vec2 warp(vec2 uv){
+	vec2 delta = uv - 0.5;
+	float delta2 = dot(delta.xy, delta.xy);
+	float delta4 = delta2 * delta2;
+	float delta_offset = delta4 * warp_amount;
+	
+	return uv + delta * delta_offset;
+}
+
+// Adds a black border to hide stretched pixel created by the warp effect
+float border (vec2 uv){
+	float radius = min(warp_amount, 0.08);
+	radius = max(min(min(abs(radius * 2.0), abs(1.0)), abs(1.0)), 1e-5);
+	vec2 abs_uv = abs(uv * 2.0 - 1.0) - vec2(1.0, 1.0) + radius;
+	float dist = length(max(vec2(0.0), abs_uv)) / radius;
+	float square = smoothstep(0.96, 1.0, dist);
+	return clamp(1.0 - square, 0.0, 1.0);
+}
+
+// Adds a vignette shadow to the edges of the image
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment()
+{
+	vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV); // Warp the uv. uv will be used in most cases instead of UV to keep the warping
+	vec2 text_uv = uv;
+	vec2 roll_uv = vec2(0.0);
+	float time = roll ? TIME : 0.0;
+	
+
+	// Pixelate the texture based on the given resolution.
+	if (pixelate)
+	{
+		text_uv = ceil(uv * resolution) / resolution;
+	}
+	
+	// Create the rolling effect. We need roll_line a bit later to make the noise effect.
+	// That is why this runs if roll is true OR noise_opacity is over 0.
+	float roll_line = 0.0;
+	if (roll || noise_opacity > 0.0)
+	{
+		// Create the areas/lines where the texture will be distorted.
+		roll_line = smoothstep(0.3, 0.9, sin(uv.y * roll_size - (time * roll_speed) ) );
+		// Create more lines of a different size and apply to the first set of lines. This creates a bit of variation.
+		roll_line *= roll_line * smoothstep(0.3, 0.9, sin(uv.y * roll_size * roll_variation - (time * roll_speed * roll_variation) ) );
+		// Distort the UV where where the lines are
+		roll_uv = vec2(( roll_line * distort_intensity * (1.-UV.x)), 0.0);
+	}
+	
+	vec4 text;
+	if (roll)
+	{
+		// If roll is true distort the texture with roll_uv. The texture is split up into RGB to 
+		// make some chromatic aberration. We apply the aberration to the red and green channels accorging to the aberration parameter
+		// and intensify it a bit in the roll distortion.
+		text.r = texture(SCREEN_TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(SCREEN_TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
+		text.b = texture(SCREEN_TEXTURE, text_uv + roll_uv).b;
+		text.a = 1.0;
+	}
+	else
+	{
+		// If roll is false only apply the aberration without any distorion. The aberration values are very small so the .1 is only 
+		// to make the slider in the Inspector less sensitive.
+		text.r = texture(SCREEN_TEXTURE, text_uv + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(SCREEN_TEXTURE, text_uv - vec2(aberration, 0.0) * .1).g;
+		text.b = texture(SCREEN_TEXTURE, text_uv).b;
+		text.a = 1.0;
+	}
+	
+	float r = text.r;
+	float g = text.g;
+	float b = text.b;
+	
+	uv = warp(UV);
+	
+	// CRT monitors don't have pixels but groups of red, green and blue dots or lines, called grille. We isolate the texture's color channels 
+	// and divide it up in 3 offsetted lines to show the red, green and blue colors next to each other, with a small black gap between.
+	if (grille_opacity > 0.0){
+		
+		float g_r = smoothstep(0.85, 0.95, abs(sin(uv.x * (resolution.x * 3.14159265))));
+		r = mix(r, r * g_r, grille_opacity);
+		
+		float g_g = smoothstep(0.85, 0.95, abs(sin(1.05 + uv.x * (resolution.x * 3.14159265))));
+		g = mix(g, g * g_g, grille_opacity);
+		
+		float b_b = smoothstep(0.85, 0.95, abs(sin(2.1 + uv.x * (resolution.x * 3.14159265))));
+		b = mix(b, b * b_b, grille_opacity);
+		
+	}
+	
+	// Apply the grille to the texture's color channels and apply Brightness. Since the grille and the scanlines (below) make the image very dark you
+	// can compensate by increasing the brightness.
+	text.r = clamp(r * brightness, 0.0, 1.0);
+	text.g = clamp(g * brightness, 0.0, 1.0);
+	text.b = clamp(b * brightness, 0.0, 1.0);
+	
+	// Scanlines are the horizontal lines that make up the image on a CRT monitor. 
+	// Here we are actual setting the black gap between each line, which I guess is not the right definition of the word, but you get the idea  
+	float scanlines = 0.5;
+	if (scanlines_opacity > 0.0)
+	{
+		// Same technique as above, create lines with sine and applying it to the texture. Smoothstep to allow setting the line size.
+		scanlines = smoothstep(scanlines_width, scanlines_width + 0.5, abs(sin(uv.y * (resolution.y * 3.14159265))));
+		text.rgb = mix(text.rgb, text.rgb * vec3(scanlines), scanlines_opacity);
+	}
+	
+	// Apply the banded noise.
+	if (noise_opacity > 0.0)
+	{
+		// Generate a noise pattern that is very stretched horizontally, and animate it with noise_speed
+		float noise = smoothstep(0.4, 0.5, noise(uv * vec2(2.0, 200.0) + vec2(10.0, (TIME * (noise_speed))) ) );
+		
+		// We use roll_line (set above) to define how big the noise should be vertically (multiplying cuts off all black parts).
+		// We also add in some basic noise with random() to break up the noise pattern above. The noise is sized according to 
+		// the resolution value set in the inspector. If you don't like this look you can 
+		// change \"ceil(uv * resolution) / resolution\" to only \"uv\" to make it less pixelated. Or multiply resolution with som value
+		// greater than 1.0 to make them smaller.
+		roll_line *= noise * scanlines * clamp(random((ceil(uv * resolution) / resolution) + vec2(TIME * 0.8, 0.0)).x + 0.8, 0.0, 1.0);
+		// Add it to the texture based on noise_opacity
+		text.rgb = clamp(mix(text.rgb, text.rgb + roll_line, noise_opacity), vec3(0.0), vec3(1.0));
+	}
+	
+	// Apply static noise by generating it over the whole screen in the same way as above
+	if (static_noise_intensity > 0.0)
+	{
+		text.rgb += clamp(random((ceil(uv * resolution) / resolution) + fract(TIME)).x, 0.0, 1.0) * static_noise_intensity;
+	}
+	
+	// Apply a black border to hide imperfections caused by the warping.
+	// Also apply the vignette
+	text.rgb *= border(uv);
+	text.rgb *= vignette(uv);
+	// Hides the black border and make that area transparent. Good if you want to add the the texture on top an image of a TV or monitor.
+	if (clip_warp)
+	{
+		text.a = border(uv);
+	}
+	
+	// Apply discoloration to get a VHS look (lower saturation and higher contrast)
+	// You can play with the values below or expose them in the Inspector.
+	float saturation = 0.5;
+	float contrast = 1.2;
+	if (discolor)
+	{
+		// Saturation
+		vec3 greyscale = vec3(text.r + text.g + text.b) / 3.;
+		text.rgb = mix(text.rgb, greyscale, saturation);
+		
+		// Contrast
+		float midpoint = pow(0.5, 2.2);
+		text.rgb = (text.rgb - vec3(midpoint)) * contrast + midpoint;
+	}
+	
+	COLOR = text;
+}"
+
+[sub_resource type="ShaderMaterial" id=91]
+shader = SubResource( 138 )
+shader_param/overlay = true
+shader_param/scanlines_opacity = 0.0
+shader_param/scanlines_width = 0.0
+shader_param/grille_opacity = 0.0
+shader_param/resolution = Vector2( 5120, 5120 )
+shader_param/pixelate = true
+shader_param/roll = true
+shader_param/roll_speed = 2.0
+shader_param/roll_size = 13.039
+shader_param/roll_variation = 5.0
+shader_param/distort_intensity = 0.0
+shader_param/noise_opacity = 0.034
+shader_param/noise_speed = 5.0
+shader_param/static_noise_intensity = 0.139
+shader_param/aberration = 0.004
+shader_param/brightness = 1.4
+shader_param/discolor = false
+shader_param/warp_amount = 1.0
+shader_param/clip_warp = false
+shader_param/vignette_intensity = 0.4
+shader_param/vignette_opacity = 0.275
+
+[sub_resource type="Animation" id=95]
+resource_name = "Glow"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 0.7, 1 ), Vector3( 0.8, 0.8, 0.8 ), Vector3( 0.7, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.16, 0.03, 0.16 ]
+}
+
+[sub_resource type="Animation" id=96]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.32 ]
+}
+
+[sub_resource type="Animation" id=97]
+resource_name = "Glow"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 0.7, 1 ), Vector3( 0.8, 0.8, 0.8 ), Vector3( 0.7, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.16, 0.03, 0.16 ]
+}
+
+[sub_resource type="Animation" id=98]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.32 ]
+}
+
+[sub_resource type="Animation" id=99]
+resource_name = "Glow"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 0.7, 1 ), Vector3( 0.8, 0.8, 0.8 ), Vector3( 0.7, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.16, 0.03, 0.16 ]
+}
+
+[sub_resource type="Animation" id=100]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.32 ]
+}
+
+[sub_resource type="Animation" id=101]
+resource_name = "Glow"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 0.7, 1 ), Vector3( 0.8, 0.8, 0.8 ), Vector3( 0.7, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.16, 0.03, 0.16 ]
+}
+
+[sub_resource type="Animation" id=102]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.32 ]
+}
+
+[sub_resource type="DynamicFont" id=43]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="Animation" id=44]
+resource_name = "CountDown"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1.1, 2.1, 3.1, 3.99998 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "", "3", "2", "1", "BATTLE!", "" ]
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "" ]
+}
+
+[sub_resource type="DynamicFont" id=106]
+size = 15
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=49]
+size = 15
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -6
+extra_spacing_bottom = -2
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=105]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=107]
+size = 15
+outline_size = 1
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=84]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="StyleBoxEmpty" id=85]
+
+[sub_resource type="StyleBoxEmpty" id=86]
+
+[sub_resource type="StyleBoxEmpty" id=87]
+
+[sub_resource type="StyleBoxEmpty" id=88]
+
+[sub_resource type="StyleBoxEmpty" id=89]
+
+[sub_resource type="Animation" id=92]
+resource_name = "Change"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Characters/TeamHolder/Knight:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 6.22995, 3.79697, 3.009 ), Vector3( 6.22995, 2.75723, 3.009 ), Vector3( 6.22995, 26.9743, 3.009 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Characters/TeamHolder/Tank:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.42964, 3.80943, 3.009 ), Vector3( 1.42964, 2.63256, 3.009 ), Vector3( 1.42964, 26.9326, 3.009 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Characters/TeamHolder/Archer:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.2, 1.4, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -4.03145, 3.80887, 3.00904 ), Vector3( -4.03145, 2.43482, 3.00904 ), Vector3( -4.03145, 26.708, 3.00904 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Characters/TeamHolder/Wizard:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.8, 2, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -9.41061, 3.80497, 3.009 ), Vector3( -9.41061, 2.43402, 3.009 ), Vector3( -9.41061, 26.8197, 3.009 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Characters/TeamHolder/PotionMaker:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.4, 2.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -14.3517, 3.77097, 3.009 ), Vector3( -14.3517, 2.46422, 3.009 ), Vector3( -14.3517, 26.885, 3.009 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("GridMap:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3, 3.2, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 6.47944, 0 ), Vector3( 0, -48.8091, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hanging:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 3.5, 3.7, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -1.11393, 0 ), Vector3( 0, -4.21698, 0 ), Vector3( 0, 18.3069, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Camera/UIHolder/HealthHolder:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 27 ), Vector2( 0, -106 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Camera/UIHolder/BrewingHolder:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -42 ), Vector2( 0, 184 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Characters/EnemyHolder/Enemy:translation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 20.958, 5.80686, 2.75712 ), Vector3( 20.958, 33.8241, 2.75712 ) ]
+}
+
+[sub_resource type="Animation" id=136]
+resource_name = "ChangeReverse"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Characters/TeamHolder/Knight:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.8, 3, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 6.22995, 26.9743, 3.009 ), Vector3( 6.22995, 2.75723, 3.009 ), Vector3( 6.22995, 3.79697, 3.009 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Characters/TeamHolder/Tank:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.3, 2.5, 2.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.42964, 26.9326, 3.009 ), Vector3( 1.42964, 2.63256, 3.009 ), Vector3( 1.42964, 3.80943, 3.009 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Characters/TeamHolder/Archer:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.9, 2.1, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -4.03145, 26.708, 3.00904 ), Vector3( -4.03145, 2.43482, 3.00904 ), Vector3( -4.03145, 3.80887, 3.00904 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Characters/TeamHolder/Wizard:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.5, 1.7, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -9.41061, 26.8197, 3.009 ), Vector3( -9.41061, 2.43402, 3.009 ), Vector3( -9.41061, 3.80497, 3.009 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Characters/TeamHolder/PotionMaker:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.1, 1.3, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -14.3517, 26.885, 3.009 ), Vector3( -14.3517, 2.46422, 3.009 ), Vector3( -14.3517, 3.77097, 3.009 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("GridMap:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.6, 0.8, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -48.8091, 0 ), Vector3( 0, 6.47944, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hanging:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 18.3069, 0 ), Vector3( 0, -4.21698, 0 ), Vector3( 0, -1.11393, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Camera/UIHolder/HealthHolder:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 2.7, 3, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -106 ), Vector2( 0, 27 ), Vector2( 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Camera/UIHolder/BrewingHolder:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 2.7, 3, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 184 ), Vector2( 0, -42 ), Vector2( 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Characters/EnemyHolder/Enemy:translation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 3.3, 3.6, 3.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 20.958, 33.8241, 2.75712 ), Vector3( 20.958, 4.01383, 2.75705 ), Vector3( 20.958, 5.807, 2.757 ) ]
+}
+
+[sub_resource type="Animation" id=93]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Characters/TeamHolder/Knight:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 6.22995, 3.79697, 3.009 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Characters/TeamHolder/Tank:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.42964, 3.80943, 3.009 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Characters/TeamHolder/Archer:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -4.03145, 3.80887, 3.00904 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Characters/TeamHolder/Wizard:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -9.41061, 3.80497, 3.009 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Characters/TeamHolder/PotionMaker:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -14.3517, 3.77097, 3.009 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("GridMap:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hanging:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -1.08848, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Camera/UIHolder/HealthHolder:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Camera/UIHolder/BrewingHolder:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Characters/EnemyHolder/Enemy:translation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 20.958, 5.807, 2.757 ) ]
+}
+
+[sub_resource type="Animation" id=139]
+resource_name = "Switch"
+
+[sub_resource type="AtlasTexture" id=151]
+atlas = ExtResource( 45 )
+region = Rect2( 61, 0, 61, 13 )
+
+[sub_resource type="AtlasTexture" id=150]
+atlas = ExtResource( 45 )
+region = Rect2( 0, 0, 61, 13 )
+
+[sub_resource type="AtlasTexture" id=149]
+atlas = ExtResource( 45 )
+region = Rect2( 0, 26, 61, 13 )
+
+[sub_resource type="AtlasTexture" id=152]
+atlas = ExtResource( 45 )
+region = Rect2( 61, 13, 61, 13 )
+
+[sub_resource type="AtlasTexture" id=148]
+atlas = ExtResource( 45 )
+region = Rect2( 122, 13, 61, 13 )
+
+[sub_resource type="AtlasTexture" id=154]
+atlas = ExtResource( 45 )
+region = Rect2( 0, 13, 61, 13 )
+
+[sub_resource type="AtlasTexture" id=153]
+atlas = ExtResource( 45 )
+region = Rect2( 122, 0, 61, 13 )
+
+[sub_resource type="AtlasTexture" id=147]
+atlas = ExtResource( 45 )
+region = Rect2( 61, 26, 61, 13 )
+
+[sub_resource type="SpriteFrames" id=155]
+animations = [ {
+"frames": [ SubResource( 151 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 150 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 149 ) ],
+"loop": true,
+"name": "6",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 152 ) ],
+"loop": true,
+"name": "4",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 148 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 154 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 153 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 147 ) ],
+"loop": true,
+"name": "7",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=156]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="Animation" id=157]
+resource_name = "CountDown"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1.1, 2.1, 3.1, 3.99998 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "", "3", "2", "1", "SURVIVE!", "" ]
+}
+
+[sub_resource type="Animation" id=158]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "" ]
+}
+
+[sub_resource type="Shader" id=140]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float circle_size : hint_range(0.0, 1.05);
+uniform float screen_width;
+uniform float screen_height;
+
+void fragment() {
+	float ratio = screen_width / screen_height;
+	float dist = distance(vec2(0.5, 0.5), vec2(mix(0.5, UV.x, ratio), UV.y));
+	COLOR.a = step(circle_size, dist);
+}"
+
+[sub_resource type="ShaderMaterial" id=141]
+shader = SubResource( 140 )
+shader_param/circle_size = 1.05
+shader_param/screen_width = 1024.0
+shader_param/screen_height = 600.0
+
+[sub_resource type="Animation" id=142]
+resource_name = "BattleEnter"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.05, 0.0, 0.0, 1.05 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../BattleScene:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../BattleScene/BattleScene:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../BattleScene:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
+
+[sub_resource type="Animation" id=143]
+resource_name = "BattleExit"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.05, 0.0, 0.0, 1.05 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../BattleScene:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../BattleScene/BattleScene:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../BattleScene:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2.4, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+
+[sub_resource type="Animation" id=144]
+resource_name = "FadeIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.05, 0.0 ]
+}
+
+[sub_resource type="Animation" id=145]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.05 ]
+}
+
+[sub_resource type="Animation" id=146]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.05 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../BattleScene:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../BattleScene/BattleScene:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../BattleScene:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+
+[sub_resource type="DynamicFont" id=71]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=72]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="StyleBoxEmpty" id=79]
+
+[sub_resource type="StyleBoxEmpty" id=80]
+
+[sub_resource type="StyleBoxEmpty" id=81]
+
+[sub_resource type="StyleBoxEmpty" id=82]
+
+[sub_resource type="StyleBoxEmpty" id=83]
+
+[sub_resource type="Animation" id=73]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -661 ), Vector2( 0, -25 ), Vector2( 0, -59 ) ]
+}
+
+[sub_resource type="Animation" id=74]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -661 ) ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -636 ), Vector2( 0, 19 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "Exit"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 19 ), Vector2( 0, -636 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -636 ) ]
+}
+
+[sub_resource type="DynamicFont" id=33]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=35]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=50]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 30 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 30 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 30 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 30 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 30 )
+region = Rect2( 32, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 30 )
+region = Rect2( 48, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 30 )
+region = Rect2( 16, 32, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=61]
+animations = [ {
+"frames": [ SubResource( 51 ), SubResource( 52 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 53 ), SubResource( 54 ) ],
+"loop": true,
+"name": "New Anim 1",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 57 ), SubResource( 58 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 55 ), SubResource( 56 ) ],
+"loop": true,
+"name": "New Anim 2",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 59 ), SubResource( 60 ) ],
+"loop": true,
+"name": "New Anim 3",
+"speed": 3.0
+} ]
+
+[sub_resource type="Gradient" id=62]
+offsets = PoolRealArray( 0, 0.52514, 1 )
+colors = PoolColorArray( 0.882353, 0.12549, 0.176471, 1, 0.901961, 0.447059, 0.0862745, 0.541176, 0.929412, 0.839216, 0, 0 )
+
+[sub_resource type="DynamicFont" id=63]
+size = 15
+font_data = ExtResource( 14 )
+
+[sub_resource type="Animation" id=64]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -696 ), Vector2( 0, 48 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=65]
+resource_name = "Exit"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 48 ), Vector2( 0, -696 ) ]
+}
+
+[sub_resource type="Animation" id=66]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -696 ) ]
+}
+
+[node name="MainWorld" type="Spatial"]
+script = ExtResource( 22 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.984328, 0.176346, 0, -0.176346, 0.984328, 5.9715, 8.51215, 28.3628 )
+environment = SubResource( 2 )
+current = true
+script = ExtResource( 35 )
+
+[node name="UIHolder" type="Node2D" parent="Camera"]
+
+[node name="BrewingHolder" type="Node2D" parent="Camera/UIHolder"]
+
+[node name="Cauldron" parent="Camera/UIHolder/BrewingHolder" instance=ExtResource( 2 )]
+position = Vector2( 507, 509 )
+scale = Vector2( 8, 8 )
+
+[node name="ResetButton" parent="Camera/UIHolder/BrewingHolder/Cauldron" instance=ExtResource( 9 )]
+position = Vector2( 0, 3.75 )
+
+[node name="BubbleParticle" type="CPUParticles2D" parent="Camera/UIHolder/BrewingHolder/Cauldron"]
+position = Vector2( 0, -11.375 )
+emitting = false
+amount = 2
+texture = SubResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 1 )
+gravity = Vector2( 0, -10 )
+color_ramp = SubResource( 12 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Camera/UIHolder/BrewingHolder/Cauldron"]
+anims/Brew = SubResource( 13 )
+anims/RESET = SubResource( 14 )
+
+[node name="FireParticles2D" type="CPUParticles2D" parent="Camera/UIHolder/BrewingHolder/Cauldron"]
+position = Vector2( 0.5, 9.875 )
+emitting = false
+amount = 12
+local_coords = false
+emission_shape = 2
+emission_rect_extents = Vector2( 12, 1 )
+spread = 73.42
+gravity = Vector2( 0, -100 )
+scale_amount = 31.18
+color_ramp = SubResource( 94 )
+
+[node name="GlassBottle" parent="Camera/UIHolder/BrewingHolder" instance=ExtResource( 1 )]
+position = Vector2( 74, 525 )
+scale = Vector2( 8, 8 )
+yellow = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/UIHolder/BrewingHolder/GlassBottle"]
+root_node = NodePath("../../../../..")
+anims/Pour = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[node name="GlassBottle2" parent="Camera/UIHolder/BrewingHolder" instance=ExtResource( 1 )]
+position = Vector2( 202, 527 )
+scale = Vector2( 8, 8 )
+blue = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/UIHolder/BrewingHolder/GlassBottle2"]
+anims/Pour = SubResource( 75 )
+anims/RESET = SubResource( 76 )
+
+[node name="GlassBottle3" parent="Camera/UIHolder/BrewingHolder" instance=ExtResource( 1 )]
+position = Vector2( 337, 527 )
+scale = Vector2( 8, 8 )
+red = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/UIHolder/BrewingHolder/GlassBottle3"]
+anims/Pour = SubResource( 77 )
+anims/RESET = SubResource( 78 )
+
+[node name="CookBook" parent="Camera/UIHolder/BrewingHolder" instance=ExtResource( 25 )]
+position = Vector2( 918, 522 )
+scale = Vector2( 8, 8 )
+
+[node name="CookingMeter" type="ColorRect" parent="Camera/UIHolder/BrewingHolder"]
+visible = false
+margin_left = 325.0
+margin_top = 401.0
+margin_right = 703.0
+margin_bottom = 420.0
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+speed = -5
+
+[node name="EnterArea" type="ColorRect" parent="Camera/UIHolder/BrewingHolder/CookingMeter"]
+margin_left = 106.0
+margin_right = 166.0
+margin_bottom = 19.0
+grow_horizontal = 0
+color = Color( 0.764706, 0.203922, 0.47451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnterArea2D" type="Area2D" parent="Camera/UIHolder/BrewingHolder/CookingMeter/EnterArea"]
+position = Vector2( 22, 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/UIHolder/BrewingHolder/CookingMeter/EnterArea/EnterArea2D"]
+position = Vector2( 8, 0.5 )
+shape = SubResource( 39 )
+
+[node name="MoveBar" type="ColorRect" parent="Camera/UIHolder/BrewingHolder/CookingMeter"]
+margin_left = 175.0
+margin_top = -6.0
+margin_right = 192.0
+margin_bottom = 24.0
+color = Color( 0.0392157, 0.360784, 0.623529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="Camera/UIHolder/BrewingHolder/CookingMeter/MoveBar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/UIHolder/BrewingHolder/CookingMeter/MoveBar/Area2D"]
+position = Vector2( 8.5, 11.5 )
+shape = SubResource( 40 )
+
+[node name="CollisionArea" type="StaticBody2D" parent="Camera/UIHolder/BrewingHolder/CookingMeter"]
+position = Vector2( 0, 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/UIHolder/BrewingHolder/CookingMeter/CollisionArea"]
+position = Vector2( -8, -0.5 )
+shape = SubResource( 41 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera/UIHolder/BrewingHolder/CookingMeter/CollisionArea"]
+position = Vector2( 389, 0.5 )
+shape = SubResource( 41 )
+
+[node name="RightPressIcon" type="AnimatedSprite" parent="Camera/UIHolder/BrewingHolder/CookingMeter"]
+position = Vector2( 186, -25 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 119 )
+animation = "10"
+
+[node name="WrongPressIcon" type="AnimatedSprite" parent="Camera/UIHolder/BrewingHolder/CookingMeter"]
+position = Vector2( 342, 43 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 124 )
+animation = "3"
+
+[node name="BrewButton" type="Button" parent="Camera/UIHolder/BrewingHolder"]
+margin_left = 618.0
+margin_top = 471.0
+margin_right = 660.0
+margin_bottom = 497.0
+rect_scale = Vector2( 5, 5 )
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.52549, 0.129412, 0.372549, 1 )
+custom_colors/font_color_pressed = Color( 0.764706, 0.203922, 0.47451, 1 )
+custom_fonts/font = SubResource( 15 )
+custom_styles/hover = SubResource( 16 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/focus = SubResource( 18 )
+custom_styles/disabled = SubResource( 19 )
+custom_styles/normal = SubResource( 20 )
+enabled_focus_mode = 0
+text = "BREW"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Camera/UIHolder/BrewingHolder/BrewButton"]
+show_behind_parent = true
+margin_left = 2.19997
+margin_top = 5.8
+margin_right = 38.2
+margin_bottom = 21.8
+texture = ExtResource( 13 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PotionQuestionLabel" type="Label" parent="Camera/UIHolder/BrewingHolder"]
+visible = false
+margin_left = 308.0
+margin_top = 174.0
+margin_right = 444.0
+margin_bottom = 192.0
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = SubResource( 42 )
+text = "WHO GETS THE POTION?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthHolder" type="Node2D" parent="Camera/UIHolder"]
+
+[node name="KnightHealthHolder" type="Node2D" parent="Camera/UIHolder/HealthHolder"]
+position = Vector2( 747, 8 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Camera/UIHolder/HealthHolder/KnightHealthHolder"]
+margin_right = 73.0
+margin_bottom = 30.0
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 13 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Camera/UIHolder/HealthHolder/KnightHealthHolder"]
+position = Vector2( 49, 44 )
+scale = Vector2( 4, 4 )
+frames = SubResource( 24 )
+animation = "New Anim 2"
+frame = 4
+playing = true
+
+[node name="HealthUnder" type="TextureProgress" parent="Camera/UIHolder/HealthHolder/KnightHealthHolder"]
+margin_left = 82.0
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 43.0
+rect_scale = Vector2( 4, 4 )
+texture_progress = ExtResource( 15 )
+tint_progress = Color( 0.882353, 0.12549, 0.176471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="TextureProgress" parent="Camera/UIHolder/HealthHolder/KnightHealthHolder"]
+margin_left = 82.0
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 43.0
+rect_scale = Vector2( 4, 4 )
+texture_progress = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera/UIHolder/HealthHolder/KnightHealthHolder"]
+margin_left = 85.0
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 25.0
+rect_scale = Vector2( 2.5, 2.5 )
+custom_fonts/font = SubResource( 25 )
+text = "KNIGHT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Camera/UIHolder/HealthHolder/KnightHealthHolder"]
+
+[node name="TankHealthHolder" type="Node2D" parent="Camera/UIHolder/HealthHolder"]
+position = Vector2( 517, 8 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Camera/UIHolder/HealthHolder/TankHealthHolder"]
+margin_right = 73.0
+margin_bottom = 30.0
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 13 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Camera/UIHolder/HealthHolder/TankHealthHolder"]
+position = Vector2( 49, 44 )
+scale = Vector2( 4, 4 )
+frames = SubResource( 24 )
+frame = 8
+playing = true
+flip_h = true
+
+[node name="HealthUnder" type="TextureProgress" parent="Camera/UIHolder/HealthHolder/TankHealthHolder"]
+margin_left = 82.0
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 43.0
+rect_scale = Vector2( 4, 4 )
+texture_progress = ExtResource( 15 )
+tint_progress = Color( 0.882353, 0.12549, 0.176471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="TextureProgress" parent="Camera/UIHolder/HealthHolder/TankHealthHolder"]
+margin_left = 82.0
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 43.0
+rect_scale = Vector2( 4, 4 )
+texture_progress = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera/UIHolder/HealthHolder/TankHealthHolder"]
+margin_left = 85.0
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 25.0
+rect_scale = Vector2( 2.5, 2.5 )
+custom_fonts/font = SubResource( 25 )
+text = "TANK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Camera/UIHolder/HealthHolder/TankHealthHolder"]
+
+[node name="ArcherHealthHolder" type="Node2D" parent="Camera/UIHolder/HealthHolder"]
+position = Vector2( 287, 8 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Camera/UIHolder/HealthHolder/ArcherHealthHolder"]
+margin_right = 73.0
+margin_bottom = 30.0
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 13 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Camera/UIHolder/HealthHolder/ArcherHealthHolder"]
+position = Vector2( 49, 44 )
+scale = Vector2( 4, 4 )
+frames = SubResource( 24 )
+animation = "New Anim"
+frame = 12
+playing = true
+
+[node name="HealthUnder" type="TextureProgress" parent="Camera/UIHolder/HealthHolder/ArcherHealthHolder"]
+margin_left = 82.0
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 43.0
+rect_scale = Vector2( 4, 4 )
+texture_progress = ExtResource( 15 )
+tint_progress = Color( 0.882353, 0.12549, 0.176471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="TextureProgress" parent="Camera/UIHolder/HealthHolder/ArcherHealthHolder"]
+margin_left = 82.0
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 43.0
+rect_scale = Vector2( 4, 4 )
+texture_progress = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera/UIHolder/HealthHolder/ArcherHealthHolder"]
+margin_left = 85.0
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 25.0
+rect_scale = Vector2( 2.5, 2.5 )
+custom_fonts/font = SubResource( 25 )
+text = "ARCHER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Camera/UIHolder/HealthHolder/ArcherHealthHolder"]
+
+[node name="WizardHealthHolder" type="Node2D" parent="Camera/UIHolder/HealthHolder"]
+position = Vector2( 54, 8 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Camera/UIHolder/HealthHolder/WizardHealthHolder"]
+margin_right = 73.0
+margin_bottom = 30.0
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 13 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Camera/UIHolder/HealthHolder/WizardHealthHolder"]
+position = Vector2( 49, 44 )
+scale = Vector2( 4, 4 )
+frames = SubResource( 24 )
+animation = "New Anim 1"
+frame = 15
+playing = true
+flip_h = true
+
+[node name="HealthUnder" type="TextureProgress" parent="Camera/UIHolder/HealthHolder/WizardHealthHolder"]
+margin_left = 82.0
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 43.0
+rect_scale = Vector2( 4, 4 )
+texture_progress = ExtResource( 15 )
+tint_progress = Color( 0.882353, 0.12549, 0.176471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="TextureProgress" parent="Camera/UIHolder/HealthHolder/WizardHealthHolder"]
+margin_left = 82.0
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 43.0
+rect_scale = Vector2( 4, 4 )
+texture_progress = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera/UIHolder/HealthHolder/WizardHealthHolder"]
+margin_left = 85.0
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 25.0
+rect_scale = Vector2( 2.5, 2.5 )
+custom_fonts/font = SubResource( 25 )
+text = "WIZARD"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Camera/UIHolder/HealthHolder/WizardHealthHolder"]
+
+[node name="FloorNumberLabel" type="Label" parent="Camera/UIHolder/HealthHolder"]
+margin_left = 54.0
+margin_top = 98.0
+margin_right = 101.0
+margin_bottom = 116.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 103 )
+text = "FLOOR 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
+
+[node name="MouseCursor" parent="Camera/CanvasLayer" instance=ExtResource( 27 )]
+
+[node name="TransitionBox" type="ColorRect" parent="Camera/CanvasLayer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransitionAnimationPlayer" type="AnimationPlayer" parent="Camera/CanvasLayer/TransitionBox"]
+autoplay = "FadeOut"
+anims/FadeInEnd = SubResource( 159 )
+anims/FadeOut = SubResource( 47 )
+anims/RESET = SubResource( 48 )
+
+[node name="ColorRect" type="ColorRect" parent="Camera/CanvasLayer"]
+material = SubResource( 91 )
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 3 )
+data = {
+"cells": PoolIntArray( 0, 0, 786436, 1, 0, 786436, 2, 0, 786436, 3, 0, 786436, 4, 0, 786436, 5, 0, 786436, 6, 0, 786436, 7, 0, 786436, 8, 0, 786436, 9, 0, 786436, 10, 0, 786436, 11, 0, 786436, 12, 0, 786436, 13, 0, 786436, 14, 0, 1376259, 15, 0, 393216, 65526, 0, 786432, 65527, 0, 786435, 65528, 0, 786436, 65529, 0, 786436, 65530, 0, 786436, 65531, 0, 786436, 65532, 0, 786436, 65533, 0, 786436, 65534, 0, 786436, 65535, 0, 786436, 0, 1, 393221, 1, 1, 393221, 2, 1, 393221, 3, 1, 393221, 4, 1, 393221, 5, 1, 393221, 6, 1, 393221, 7, 1, 393221, 8, 1, 393221, 9, 1, 393221, 10, 1, 393221, 11, 1, 393221, 12, 1, 393221, 13, 1, 393221, 14, 1, 1376260, 15, 1, 393216, 65526, 1, 786432, 65527, 1, 1114116, 65528, 1, 393221, 65529, 1, 393221, 65530, 1, 393221, 65531, 1, 393221, 65532, 1, 393221, 65533, 1, 393221, 65534, 1, 393221, 65535, 1, 393221, 0, 2, 393220, 1, 2, 393220, 2, 2, 393220, 3, 2, 393220, 4, 2, 393220, 5, 2, 393220, 6, 2, 393220, 7, 2, 393220, 8, 2, 393220, 9, 2, 393220, 10, 2, 393220, 11, 2, 393220, 12, 2, 393220, 13, 2, 393220, 14, 2, 393219, 15, 2, 393216, 65526, 2, 786432, 65527, 2, 1114115, 65528, 2, 393220, 65529, 2, 393220, 65530, 2, 393220, 65531, 2, 393220, 65532, 2, 393220, 65533, 2, 393220, 65534, 2, 393220, 65535, 2, 393220, 0, 3, 1114112, 1, 3, 1114112, 2, 3, 1114112, 3, 3, 1114112, 4, 3, 1114112, 5, 3, 1114112, 6, 3, 1114112, 7, 3, 1114112, 8, 3, 1114112, 9, 3, 1114112, 10, 3, 1114112, 11, 3, 1114112, 12, 3, 1114112, 13, 3, 1114112, 14, 3, 1114112, 15, 3, 393217, 65526, 3, 1114113, 65527, 3, 1114112, 65528, 3, 1114112, 65529, 3, 1114112, 65530, 3, 1114112, 65531, 3, 1114112, 65532, 3, 1114112, 65533, 3, 1114112, 65534, 3, 1114112, 65535, 3, 1114112, 0, 65535, 1376256, 1, 65535, 1376256, 2, 65535, 1376256, 3, 65535, 1376256, 4, 65535, 1376256, 5, 65535, 1376256, 6, 65535, 1376256, 7, 65535, 1376256, 8, 65535, 1376256, 9, 65535, 1376256, 10, 65535, 1376256, 11, 65535, 1376256, 12, 65535, 1376256, 13, 65535, 1376256, 14, 65535, 1376256, 15, 65535, 1376257, 65526, 65535, 786433, 65527, 65535, 1376256, 65528, 65535, 1376256, 65529, 65535, 1376256, 65530, 65535, 1376256, 65531, 65535, 1376256, 65532, 65535, 1376256, 65533, 65535, 1376256, 65534, 65535, 1376256, 65535, 65535, 1376256 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="EnvironmentalObjects" type="Spatial" parent="GridMap"]
+
+[node name="Ground" type="Spatial" parent="GridMap/EnvironmentalObjects"]
+
+[node name="Door" type="Sprite3D" parent="GridMap/EnvironmentalObjects/Ground"]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, -11.8615, 5.34606, 0 )
+texture = ExtResource( 21 )
+
+[node name="Door3" type="Sprite3D" parent="GridMap/EnvironmentalObjects/Ground"]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, 23.7779, 5.34606, 0 )
+texture = ExtResource( 21 )
+
+[node name="Hanging" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.08848, 0 )
+
+[node name="HangingLight2" type="Sprite3D" parent="Hanging"]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, -12.8601, 16.8546, 1.29026 )
+texture = ExtResource( 20 )
+
+[node name="Light" type="Sprite3D" parent="Hanging/HangingLight2"]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 1, 0.0512667, -0.269708, 2 )
+opacity = 0.32
+texture = ExtResource( 36 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hanging/HangingLight2/Light"]
+autoplay = "Glow"
+playback_speed = 0.3
+anims/Glow = SubResource( 95 )
+anims/RESET = SubResource( 96 )
+
+[node name="HangingLight3" type="Sprite3D" parent="Hanging"]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, 11.7296, 16.8546, 1.29026 )
+texture = ExtResource( 20 )
+
+[node name="Light" type="Sprite3D" parent="Hanging/HangingLight3"]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.0238739, -0.255247, 2 )
+opacity = 0.32
+texture = ExtResource( 36 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hanging/HangingLight3/Light"]
+autoplay = "Glow"
+anims/Glow = SubResource( 97 )
+anims/RESET = SubResource( 98 )
+
+[node name="HangingLight5" type="Sprite3D" parent="Hanging"]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, 0.299563, 20.038, 2.19791 )
+texture = ExtResource( 20 )
+
+[node name="Light" type="Sprite3D" parent="Hanging/HangingLight5"]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 1, 0.00673906, -0.28889, 2 )
+opacity = 0.32
+texture = ExtResource( 36 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hanging/HangingLight5/Light"]
+autoplay = "Glow"
+playback_speed = 0.5
+anims/Glow = SubResource( 99 )
+anims/RESET = SubResource( 100 )
+
+[node name="HangingLight6" type="Sprite3D" parent="Hanging"]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, 22.1342, 20.0048, 2.19791 )
+texture = ExtResource( 20 )
+
+[node name="Light" type="Sprite3D" parent="Hanging/HangingLight6"]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.0561564, -0.271934, 2 )
+opacity = 0.32
+texture = ExtResource( 36 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hanging/HangingLight6/Light"]
+autoplay = "Glow"
+playback_speed = 0.7
+anims/Glow = SubResource( 101 )
+anims/RESET = SubResource( 102 )
+
+[node name="Characters" type="Spatial" parent="."]
+
+[node name="TeamHolder" type="Spatial" parent="Characters"]
+
+[node name="Knight" parent="Characters/TeamHolder" instance=ExtResource( 5 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, 6.22995, 3.79697, 3.009 )
+
+[node name="Tween" type="Tween" parent="Characters/TeamHolder/Knight"]
+
+[node name="Tank" parent="Characters/TeamHolder" instance=ExtResource( 4 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, 1.42964, 3.80943, 3.009 )
+
+[node name="Tween" type="Tween" parent="Characters/TeamHolder/Tank"]
+
+[node name="Archer" parent="Characters/TeamHolder" instance=ExtResource( 6 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, -4.03145, 3.80887, 3.00904 )
+
+[node name="Tween" type="Tween" parent="Characters/TeamHolder/Archer"]
+
+[node name="Wizard" parent="Characters/TeamHolder" instance=ExtResource( 7 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, -9.41061, 3.80497, 3.009 )
+
+[node name="Tween" type="Tween" parent="Characters/TeamHolder/Wizard"]
+
+[node name="PotionMaker" parent="Characters/TeamHolder" instance=ExtResource( 8 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, -14.3517, 3.77097, 3.009 )
+
+[node name="EnemyHolder" type="Spatial" parent="Characters"]
+
+[node name="Enemy" parent="Characters/EnemyHolder" instance=ExtResource( 23 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 25, 20.958, 5.807, 2.757 )
+
+[node name="BattleTimer" type="Timer" parent="."]
+
+[node name="FailSafeSwitchTurnButton" parent="." instance=ExtResource( 46 )]
+position = Vector2( 955, 123 )
+scale = Vector2( 2, 2 )
+
+[node name="CountDownLabel" type="Label" parent="."]
+pause_mode = 2
+margin_left = 370.0
+margin_top = 203.0
+margin_right = 415.0
+margin_bottom = 221.0
+rect_scale = Vector2( 7, 7 )
+custom_fonts/font = SubResource( 43 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountDownAnimationPlayer" type="AnimationPlayer" parent="CountDownLabel"]
+anims/CountDown = SubResource( 44 )
+anims/RESET = SubResource( 45 )
+
+[node name="CookBookHolder" type="ColorRect" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.862745 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CookBookPage" type="ColorRect" parent="CookBookHolder"]
+margin_left = 106.0
+margin_top = 6.0
+margin_right = 894.0
+margin_bottom = 592.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoockBookStains" type="Sprite" parent="CookBookHolder/CookBookPage"]
+modulate = Color( 0.729412, 0.615686, 0.509804, 1 )
+position = Vector2( 703, 110 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 38 )
+hframes = 2
+vframes = 2
+
+[node name="CoockBookStains2" type="Sprite" parent="CookBookHolder/CookBookPage"]
+modulate = Color( 0.729412, 0.615686, 0.509804, 1 )
+position = Vector2( 81, 485 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 38 )
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="CoockBookStains3" type="Sprite" parent="CookBookHolder/CookBookPage"]
+modulate = Color( 0.729412, 0.615686, 0.509804, 1 )
+position = Vector2( 258, 108 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 38 )
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="CookBookTitle" type="Label" parent="CookBookHolder/CookBookPage"]
+margin_left = 182.0
+margin_top = 21.0
+margin_right = 409.0
+margin_bottom = 42.0
+rect_scale = Vector2( 3, 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 106 )
+text = "CONCONCTION COOK BOOK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorCircles" type="Sprite" parent="CookBookHolder/CookBookPage"]
+position = Vector2( 139, 185 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 28 )
+
+[node name="Instructions" type="RichTextLabel" parent="CookBookHolder/CookBookPage"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 295.0
+margin_top = 108.0
+margin_right = 517.0
+margin_bottom = 344.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/normal_font = SubResource( 49 )
+text = "<-Use the color circles to make the right combination of potions to heal, get buffs and remove debuffs!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamMates" type="Sprite" parent="CookBookHolder/CookBookPage"]
+position = Vector2( 303, 370 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+
+[node name="Label" type="Label" parent="CookBookHolder/CookBookPage/TeamMates"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 9.5
+margin_top = -10.0
+margin_right = 49.5
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 105 )
+text = "+   ="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlassBottle" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates"]
+position = Vector2( 23.5, 0.25 )
+texture = ExtResource( 37 )
+
+[node name="GlassBottleLiquid" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates/GlassBottle"]
+modulate = Color( 0.882353, 0.12549, 0.176471, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 39 )
+
+[node name="TeamMates" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates"]
+position = Vector2( 45.75, 0.25 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+
+[node name="Buffs" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates"]
+self_modulate = Color( 0.882353, 0.12549, 0.176471, 1 )
+position = Vector2( 39.25, -3.75 )
+texture = ExtResource( 40 )
+
+[node name="Buffs2" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates"]
+self_modulate = Color( 0.882353, 0.12549, 0.176471, 1 )
+position = Vector2( 50.75, -8 )
+texture = ExtResource( 40 )
+
+[node name="Buffs3" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates"]
+self_modulate = Color( 0.882353, 0.12549, 0.176471, 1 )
+position = Vector2( 44.25, -13.75 )
+texture = ExtResource( 40 )
+
+[node name="Label2" type="Label" parent="CookBookHolder/CookBookPage/TeamMates"]
+margin_left = 5.75
+margin_top = -17.75
+margin_right = 66.75
+margin_bottom = 0.25
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 107 )
+text = "ATTACK UP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamMates3" type="Sprite" parent="CookBookHolder/CookBookPage"]
+self_modulate = Color( 0.901961, 0.447059, 0.0862745, 1 )
+position = Vector2( 300, 516 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 2
+
+[node name="Label" type="Label" parent="CookBookHolder/CookBookPage/TeamMates3"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 9.5
+margin_top = -10.0
+margin_right = 49.5
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 105 )
+text = "+   ="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlassBottle" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates3"]
+position = Vector2( 23.5, 0.25 )
+texture = ExtResource( 37 )
+
+[node name="GlassBottleLiquid" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates3/GlassBottle"]
+modulate = Color( 0.901961, 0.447059, 0.0862745, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 39 )
+
+[node name="TeamMates" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates3"]
+position = Vector2( 45.75, 0.25 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 2
+
+[node name="Label2" type="Label" parent="CookBookHolder/CookBookPage/TeamMates3"]
+margin_left = 5.75
+margin_top = -17.75
+margin_right = 66.75
+margin_bottom = 0.25
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 107 )
+text = "ANTI-FIRE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamMates4" type="Sprite" parent="CookBookHolder/CookBookPage"]
+self_modulate = Color( 0.929412, 0.839216, 0, 1 )
+position = Vector2( 568, 370 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 6
+
+[node name="Label" type="Label" parent="CookBookHolder/CookBookPage/TeamMates4"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 9.5
+margin_top = -10.0
+margin_right = 49.5
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 105 )
+text = "+   ="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlassBottle" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates4"]
+position = Vector2( 23.5, 0.25 )
+texture = ExtResource( 37 )
+
+[node name="GlassBottleLiquid" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates4/GlassBottle"]
+modulate = Color( 0.929412, 0.839216, 0, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 39 )
+
+[node name="TeamMates" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates4"]
+position = Vector2( 45.75, 0.25 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 6
+
+[node name="Label2" type="Label" parent="CookBookHolder/CookBookPage/TeamMates4"]
+margin_left = 7.75
+margin_top = -17.75
+margin_right = 68.75
+margin_bottom = 0.25
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 107 )
+text = "DE-STUN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamMates6" type="Sprite" parent="CookBookHolder/CookBookPage"]
+self_modulate = Color( 0.627451, 0.772549, 0.776471, 1 )
+position = Vector2( 564, 516 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 4
+
+[node name="Label" type="Label" parent="CookBookHolder/CookBookPage/TeamMates6"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 9.5
+margin_top = -10.0
+margin_right = 49.5
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 105 )
+text = "+   ="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlassBottle" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates6"]
+position = Vector2( 23.5, 0.25 )
+texture = ExtResource( 37 )
+
+[node name="GlassBottleLiquid" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates6/GlassBottle"]
+modulate = Color( 0.533333, 0.227451, 0.12549, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 39 )
+
+[node name="TeamMates" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates6"]
+position = Vector2( 45.75, 0.25 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 4
+
+[node name="Label2" type="Label" parent="CookBookHolder/CookBookPage/TeamMates6"]
+margin_left = 1.75
+margin_top = -17.75
+margin_right = 79.75
+margin_bottom = 0.25
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 107 )
+text = "ANTI-FREEZE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamMates7" type="Sprite" parent="CookBookHolder/CookBookPage"]
+position = Vector2( 43, 370 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+
+[node name="Label" type="Label" parent="CookBookHolder/CookBookPage/TeamMates7"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 9.5
+margin_top = -10.0
+margin_right = 49.5
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 105 )
+text = "+   ="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlassBottle" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates7"]
+position = Vector2( 23.5, 0.25 )
+texture = ExtResource( 37 )
+
+[node name="GlassBottleLiquid" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates7/GlassBottle"]
+modulate = Color( 0.0392157, 0.360784, 0.623529, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 39 )
+
+[node name="TeamMates" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates7"]
+position = Vector2( 45.75, 0.25 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+
+[node name="Buffs" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates7"]
+self_modulate = Color( 0.0392157, 0.360784, 0.623529, 1 )
+position = Vector2( 39.25, -3.75 )
+texture = ExtResource( 40 )
+
+[node name="Buffs2" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates7"]
+self_modulate = Color( 0.0392157, 0.360784, 0.623529, 1 )
+position = Vector2( 50.75, -8 )
+texture = ExtResource( 40 )
+
+[node name="Buffs3" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates7"]
+self_modulate = Color( 0.0392157, 0.360784, 0.623529, 1 )
+position = Vector2( 44.25, -13.75 )
+texture = ExtResource( 40 )
+
+[node name="Label2" type="Label" parent="CookBookHolder/CookBookPage/TeamMates7"]
+margin_left = 4.5
+margin_top = -17.75
+margin_right = 73.5
+margin_bottom = 0.25
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 107 )
+text = "DEFENCE UP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamMates9" type="Sprite" parent="CookBookHolder/CookBookPage"]
+self_modulate = Color( 0.52549, 0.129412, 0.372549, 1 )
+position = Vector2( 43, 516 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 4
+
+[node name="Label" type="Label" parent="CookBookHolder/CookBookPage/TeamMates9"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 9.5
+margin_top = -10.0
+margin_right = 49.5
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 105 )
+text = "+   ="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlassBottle" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates9"]
+position = Vector2( 23.5, 0.25 )
+texture = ExtResource( 37 )
+
+[node name="GlassBottleLiquid" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates9/GlassBottle"]
+modulate = Color( 0.52549, 0.129412, 0.372549, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 39 )
+
+[node name="TeamMates" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates9"]
+position = Vector2( 45.75, 0.25 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 4
+
+[node name="Label2" type="Label" parent="CookBookHolder/CookBookPage/TeamMates9"]
+margin_left = 2.75
+margin_top = -17.75
+margin_right = 81.75
+margin_bottom = 0.25
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 107 )
+text = "ANTI-POSION"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamMates10" type="Sprite" parent="CookBookHolder/CookBookPage"]
+position = Vector2( 401, 251 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 2
+
+[node name="Label" type="Label" parent="CookBookHolder/CookBookPage/TeamMates10"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 9.5
+margin_top = -10.0
+margin_right = 49.5
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 105 )
+text = "+   ="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlassBottle" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates10"]
+position = Vector2( 23.5, 0.25 )
+texture = ExtResource( 37 )
+
+[node name="GlassBottleLiquid" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates10/GlassBottle"]
+modulate = Color( 0.054902, 0.529412, 0.262745, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 39 )
+
+[node name="TeamMates" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates10"]
+position = Vector2( 45.75, 0.25 )
+texture = ExtResource( 30 )
+hframes = 4
+vframes = 3
+frame = 2
+
+[node name="Label2" type="Label" parent="CookBookHolder/CookBookPage/TeamMates10"]
+margin_left = 2.75
+margin_top = -15.75
+margin_right = 81.75
+margin_bottom = 2.25
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 107 )
+text = "HEAL POTION"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealEffect" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates10"]
+position = Vector2( 52.25, -6.25 )
+texture = ExtResource( 41 )
+
+[node name="HealEffect2" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates10"]
+position = Vector2( 38.75, -4 )
+texture = ExtResource( 41 )
+
+[node name="HealEffect3" type="Sprite" parent="CookBookHolder/CookBookPage/TeamMates10"]
+position = Vector2( 56.5, 3.5 )
+texture = ExtResource( 41 )
+
+[node name="ExitButton" type="Button" parent="CookBookHolder"]
+pause_mode = 2
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 824.0
+margin_top = -20.0
+margin_right = 845.0
+margin_bottom = 6.0
+rect_scale = Vector2( 4, 4 )
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.478431, 0.478431, 0.478431, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 84 )
+custom_styles/hover = SubResource( 85 )
+custom_styles/pressed = SubResource( 86 )
+custom_styles/focus = SubResource( 87 )
+custom_styles/disabled = SubResource( 88 )
+custom_styles/normal = SubResource( 89 )
+enabled_focus_mode = 0
+text = "X"
+flat = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 29 )
+volume_db = -18.887
+pitch_scale = 1.2
+autoplay = true
+
+[node name="ChangeFloorAnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+playback_speed = 1.5
+anims/Change = SubResource( 92 )
+anims/ChangeReverse = SubResource( 136 )
+anims/RESET = SubResource( 93 )
+
+[node name="SelfBattleTransitionAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Switch = SubResource( 139 )
+
+[node name="BattleScene" type="ColorRect" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.894118 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BattleScene" parent="BattleScene" instance=ExtResource( 44 )]
+visible = false
+position = Vector2( 518, 308 )
+scale = Vector2( 3, 3 )
+
+[node name="BattleHealthBar" type="AnimatedSprite" parent="BattleScene"]
+position = Vector2( 153, 46 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 155 )
+animation = "7"
+
+[node name="TimerLabel" type="Label" parent="BattleScene"]
+margin_left = 863.0
+margin_top = 5.0
+margin_right = 903.0
+margin_bottom = 23.0
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = SubResource( 156 )
+text = "30"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="BattleScene/TimerLabel"]
+
+[node name="CountDownLabel" type="Label" parent="BattleScene"]
+pause_mode = 2
+margin_left = 342.0
+margin_top = 231.0
+margin_right = 394.0
+margin_bottom = 249.0
+rect_scale = Vector2( 7, 7 )
+custom_fonts/font = SubResource( 43 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountDownAnimationPlayer" type="AnimationPlayer" parent="BattleScene/CountDownLabel"]
+anims/CountDown = SubResource( 157 )
+anims/RESET = SubResource( 158 )
+
+[node name="BattleTransition" type="ColorRect" parent="."]
+material = SubResource( 141 )
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleTransition"]
+anims/BattleEnter = SubResource( 142 )
+anims/BattleExit = SubResource( 143 )
+anims/FadeIn = SubResource( 144 )
+anims/FadeOut = SubResource( 145 )
+anims/RESET = SubResource( 146 )
+
+[node name="GameoverScreen" type="ColorRect" parent="."]
+pause_mode = 2
+margin_top = -661.0
+margin_right = 1024.0
+margin_bottom = -2.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameoverScreen"]
+margin_left = 279.0
+margin_top = 161.0
+margin_right = 341.0
+margin_bottom = 179.0
+rect_scale = Vector2( 7, 7 )
+custom_fonts/font = SubResource( 71 )
+text = "GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraveStones" type="Sprite" parent="GameoverScreen"]
+position = Vector2( 320, 366 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 34 )
+hframes = 2
+vframes = 2
+
+[node name="GraveStones2" type="Sprite" parent="GameoverScreen"]
+position = Vector2( 438, 366 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 34 )
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="GraveStones3" type="Sprite" parent="GameoverScreen"]
+position = Vector2( 560, 366 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 34 )
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="GraveStones4" type="Sprite" parent="GameoverScreen"]
+position = Vector2( 682, 366 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 34 )
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="RetryButton" type="Button" parent="GameoverScreen"]
+margin_left = 389.0
+margin_top = 430.0
+margin_right = 441.0
+margin_bottom = 457.0
+rect_scale = Vector2( 4, 4 )
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.0392157, 0.360784, 0.623529, 1 )
+custom_colors/font_color_pressed = Color( 0.0392157, 0.360784, 0.623529, 1 )
+custom_fonts/font = SubResource( 72 )
+custom_styles/hover = SubResource( 79 )
+custom_styles/pressed = SubResource( 80 )
+custom_styles/focus = SubResource( 81 )
+custom_styles/disabled = SubResource( 82 )
+custom_styles/normal = SubResource( 83 )
+enabled_focus_mode = 0
+text = "RETRY"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="GameoverScreen"]
+margin_left = 386.0
+margin_top = 494.0
+margin_right = 438.0
+margin_bottom = 521.0
+rect_scale = Vector2( 4, 4 )
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.0392157, 0.360784, 0.623529, 1 )
+custom_colors/font_color_pressed = Color( 0.0392157, 0.360784, 0.623529, 1 )
+custom_fonts/font = SubResource( 72 )
+custom_styles/hover = SubResource( 79 )
+custom_styles/pressed = SubResource( 80 )
+custom_styles/focus = SubResource( 81 )
+custom_styles/disabled = SubResource( 82 )
+custom_styles/normal = SubResource( 83 )
+enabled_focus_mode = 0
+text = "QUIT"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverAnimationPlayer" type="AnimationPlayer" parent="GameoverScreen"]
+anims/Enter = SubResource( 73 )
+anims/RESET = SubResource( 74 )
+
+[node name="ColorRect" type="ColorRect" parent="GameoverScreen"]
+margin_top = -157.0
+margin_right = 1031.0
+margin_bottom = 61.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChangeSceneCover" type="ColorRect" parent="."]
+pause_mode = 2
+margin_top = -636.0
+margin_right = 1024.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ChangeSceneCover"]
+anims/Enter = SubResource( 36 )
+anims/Exit = SubResource( 37 )
+anims/RESET = SubResource( 38 )
+
+[node name="FinishLabel" type="Label" parent="ChangeSceneCover"]
+margin_left = 245.0
+margin_top = 96.0
+margin_right = 357.0
+margin_bottom = 116.0
+rect_scale = Vector2( 5, 5 )
+custom_fonts/font = SubResource( 33 )
+text = "FLOOR 1 OVERCOME!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ChangeSceneCover"]
+margin_left = 358.0
+margin_top = 189.0
+margin_right = 461.0
+margin_bottom = 209.0
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = SubResource( 34 )
+text = "CHOOSE ONE BUFF"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuffButton" parent="ChangeSceneCover" instance=ExtResource( 24 )]
+position = Vector2( 172, 309 )
+scale = Vector2( 4, 4 )
+HealthButton = true
+
+[node name="Label" type="Label" parent="ChangeSceneCover/BuffButton"]
+margin_left = -1.0
+margin_top = -12.75
+margin_right = 60.0
+margin_bottom = 5.25
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "HEALTH UP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuffButton2" parent="ChangeSceneCover" instance=ExtResource( 24 )]
+position = Vector2( 432, 309 )
+scale = Vector2( 4, 4 )
+AttackButton = true
+
+[node name="Label" type="Label" parent="ChangeSceneCover/BuffButton2"]
+margin_top = -12.75
+margin_right = 69.0
+margin_bottom = 5.25
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "ATTACK UP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuffButton3" parent="ChangeSceneCover" instance=ExtResource( 24 )]
+position = Vector2( 684, 309 )
+scale = Vector2( 4, 4 )
+DefenceButton = true
+
+[node name="Label" type="Label" parent="ChangeSceneCover/BuffButton3"]
+margin_left = -3.0
+margin_top = -12.75
+margin_right = 66.0
+margin_bottom = 5.25
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "DEFENCE UP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="ChangeSceneCover"]
+margin_top = -120.0
+margin_right = 1023.0
+margin_bottom = 13.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseScreen" type="ColorRect" parent="."]
+pause_mode = 2
+margin_top = -696.0
+margin_right = 1024.0
+margin_bottom = -5.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseScreen"]
+margin_left = 373.0
+margin_top = 61.0
+margin_right = 415.0
+margin_bottom = 81.0
+rect_scale = Vector2( 7, 7 )
+custom_fonts/font = SubResource( 50 )
+text = "PAUSED"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camp" type="Node2D" parent="PauseScreen"]
+position = Vector2( 513, 252 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PauseScreen/Camp"]
+position = Vector2( -139, 77 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 61 )
+animation = "New Anim 3"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="PauseScreen/Camp"]
+position = Vector2( -95, 0 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 61 )
+animation = "New Anim"
+playing = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="PauseScreen/Camp"]
+position = Vector2( -3.00003, -38 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 61 )
+animation = "New Anim 2"
+playing = true
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="PauseScreen/Camp"]
+position = Vector2( 92.0001, 7 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 61 )
+frame = 1
+playing = true
+flip_h = true
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="PauseScreen/Camp"]
+position = Vector2( 130, 81 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 61 )
+animation = "New Anim 1"
+frame = 1
+playing = true
+flip_h = true
+
+[node name="CampFire" type="Node2D" parent="PauseScreen/Camp"]
+position = Vector2( -6, -21 )
+
+[node name="YSort" type="YSort" parent="PauseScreen/Camp/CampFire"]
+
+[node name="BrewingBubble8" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( 32, 70 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 31 )
+
+[node name="BrewingBubble7" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( 53, 95 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 31 )
+
+[node name="BrewingBubble2" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( -30, 72 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 31 )
+
+[node name="BrewingBubble3" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( -49, 96 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 31 )
+
+[node name="BrewingBubble4" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( -29, 116 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 31 )
+
+[node name="BrewingBubble5" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( 2, 116 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 31 )
+
+[node name="BrewingBubble6" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( 33, 116 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 31 )
+
+[node name="BrewingBubble9" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( 1, 67 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 31 )
+
+[node name="CampStick" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( -20.2029, 92.7971 )
+rotation = 0.371729
+scale = Vector2( 5, 5 )
+texture = ExtResource( 32 )
+hframes = 2
+vframes = 2
+
+[node name="CampStick2" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( 19.7971, 89.7971 )
+rotation = 0.218398
+scale = Vector2( 5, 5 )
+texture = ExtResource( 32 )
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="CampStick3" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( -5.20288, 92.7971 )
+rotation = 0.120495
+scale = Vector2( 5, 5 )
+texture = ExtResource( 32 )
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="CampStick4" type="Sprite" parent="PauseScreen/Camp/CampFire/YSort"]
+position = Vector2( 8.79712, 92.7971 )
+rotation = -0.202868
+scale = Vector2( -5, 5 )
+texture = ExtResource( 32 )
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="PauseScreen/Camp/CampFire"]
+position = Vector2( -1, 72 )
+scale = Vector2( 20, 20 )
+amount = 12
+emission_shape = 1
+emission_sphere_radius = 1.3
+gravity = Vector2( 0, -5 )
+angular_velocity = 173.33
+linear_accel = 3.7
+color_ramp = SubResource( 62 )
+
+[node name="ContinueButton" type="Button" parent="PauseScreen"]
+margin_left = 407.0
+margin_top = 367.0
+margin_right = 477.0
+margin_bottom = 391.0
+rect_scale = Vector2( 3, 3 )
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.0392157, 0.360784, 0.623529, 1 )
+custom_colors/font_color_pressed = Color( 0.223529, 0.156863, 0.454902, 1 )
+custom_fonts/font = SubResource( 63 )
+custom_styles/hover = SubResource( 79 )
+custom_styles/pressed = SubResource( 80 )
+custom_styles/focus = SubResource( 81 )
+custom_styles/disabled = SubResource( 82 )
+custom_styles/normal = SubResource( 83 )
+enabled_focus_mode = 0
+text = "CONTINUE"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="PauseScreen"]
+margin_left = 407.0
+margin_top = 428.0
+margin_right = 477.0
+margin_bottom = 452.0
+rect_scale = Vector2( 3, 3 )
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.0392157, 0.360784, 0.623529, 1 )
+custom_colors/font_color_pressed = Color( 0.0392157, 0.360784, 0.623529, 1 )
+custom_fonts/font = SubResource( 63 )
+custom_styles/hover = SubResource( 79 )
+custom_styles/pressed = SubResource( 80 )
+custom_styles/focus = SubResource( 81 )
+custom_styles/disabled = SubResource( 82 )
+custom_styles/normal = SubResource( 83 )
+enabled_focus_mode = 0
+text = "QUIT"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="PauseScreen"]
+margin_top = -141.0
+margin_right = 1024.0
+margin_bottom = 56.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseAnimationPlayer" type="AnimationPlayer" parent="PauseScreen"]
+anims/Enter = SubResource( 64 )
+anims/Exit = SubResource( 65 )
+anims/RESET = SubResource( 66 )
+
+[connection signal="area_entered" from="Camera/UIHolder/BrewingHolder/CookingMeter/MoveBar/Area2D" to="Camera/UIHolder/BrewingHolder/CookingMeter" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Camera/UIHolder/BrewingHolder/CookingMeter/MoveBar/Area2D" to="Camera/UIHolder/BrewingHolder/CookingMeter" method="_on_Area2D_area_exited"]
+[connection signal="body_entered" from="Camera/UIHolder/BrewingHolder/CookingMeter/MoveBar/Area2D" to="Camera/UIHolder/BrewingHolder/CookingMeter" method="_on_Area2D_body_entered"]
+[connection signal="pressed" from="Camera/UIHolder/BrewingHolder/BrewButton" to="Camera/UIHolder/BrewingHolder/Cauldron" method="_on_BrewButton_pressed"]
+[connection signal="animation_finished" from="Camera/CanvasLayer/TransitionBox/TransitionAnimationPlayer" to="." method="_on_TransitionAnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="Camera/CanvasLayer/TransitionBox/TransitionAnimationPlayer" to="Characters/EnemyHolder/Enemy" method="_on_TransitionAnimationPlayer_animation_finished"]
+[connection signal="timeout" from="BattleTimer" to="." method="_on_BattleTimer_timeout"]
+[connection signal="animation_finished" from="CountDownLabel/CountDownAnimationPlayer" to="." method="_on_CountDownAnimationPlayer_animation_finished"]
+[connection signal="pressed" from="CookBookHolder/ExitButton" to="Camera/UIHolder/BrewingHolder/CookBook" method="_on_ExitButton_pressed"]
+[connection signal="animation_finished" from="ChangeFloorAnimationPlayer" to="." method="_on_ChangeFloorAnimationPlayer_animation_finished"]
+[connection signal="timeout" from="BattleScene/TimerLabel/Timer" to="BattleScene/BattleScene" method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="BattleScene/CountDownLabel/CountDownAnimationPlayer" to="BattleScene/BattleScene" method="_on_CountDownAnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="BattleTransition/AnimationPlayer" to="BattleScene/BattleScene" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="GameoverScreen/RetryButton" to="PauseScreen" method="_on_RetryButton_pressed"]
+[connection signal="pressed" from="GameoverScreen/QuitButton" to="PauseScreen" method="_on_QuitButton_pressed"]
+[connection signal="animation_finished" from="GameoverScreen/GameOverAnimationPlayer" to="PauseScreen" method="_on_GameOverAnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="ChangeSceneCover/AnimationPlayer" to="ChangeSceneCover/BuffButton" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="ChangeSceneCover/AnimationPlayer" to="ChangeSceneCover/BuffButton2" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="ChangeSceneCover/AnimationPlayer" to="ChangeSceneCover/BuffButton3" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="PauseScreen/ContinueButton" to="PauseScreen" method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="PauseScreen/QuitButton" to="PauseScreen" method="_on_QuitButton_pressed"]
+[connection signal="animation_finished" from="PauseScreen/PauseAnimationPlayer" to="PauseScreen" method="_on_PauseAnimationPlayer_animation_finished"]
+
+[editable path="BattleScene/BattleScene"]

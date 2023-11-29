@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/CreatureHurt.wav-a24dd4dc7d42852b6f57513365d2c274.sample"
+
+[deps]
+
+source_file="res://Audio/Audio/CreatureHurt.wav"
+dest_files=[ "res://.import/CreatureHurt.wav-a24dd4dc7d42852b6f57513365d2c274.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

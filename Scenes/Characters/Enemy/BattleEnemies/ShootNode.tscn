@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Characters/EnemyScript/BattleScripts/ShootNodeScript.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Objects/Projectiles/Projectile.tscn" type="PackedScene" id=2]
+
+[node name="ShootNode" type="Position2D"]
+script = ExtResource( 1 )
+Bullet = ExtResource( 2 )

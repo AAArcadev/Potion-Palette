@@ -1,0 +1,93 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Audio/Audio/StartScreenSpaceSound.wav" type="AudioStream" id=1]
+[ext_resource path="res://Audio/Audio/PotionPickSound.wav" type="AudioStream" id=2]
+[ext_resource path="res://Audio/Audio/PlayerHurt.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/Audio/MissSound.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/Audio/CreatureHurt.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/Audio/BrewButtonSound.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/Audio/BrewCorrectSound.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/Audio/ErrorSound.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/Audio/GivePotion.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/Audio/ChangeCharacterPickSound.wav" type="AudioStream" id=10]
+[ext_resource path="res://Audio/Audio/Bubble.wav" type="AudioStream" id=11]
+[ext_resource path="res://Audio/Audio/PowerUpSound.wav" type="AudioStream" id=12]
+[ext_resource path="res://Audio/Audio/ShooterShootSound.wav" type="AudioStream" id=13]
+[ext_resource path="res://Audio/Audio/ProjectileHit.wav" type="AudioStream" id=14]
+[ext_resource path="res://Audio/Audio/IndicateSound.wav" type="AudioStream" id=15]
+
+[node name="MusicHandler" type="Node"]
+
+[node name="StartScreenSpaceSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -24.124
+
+[node name="PotionPickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="ArcherHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 1.72
+
+[node name="WizardHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="KnightHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 0.71
+
+[node name="TankHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 0.32
+
+[node name="PotionMakerHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 0.9
+
+[node name="MissSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -12.33
+pitch_scale = 0.88
+
+[node name="CreatureHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="BrewButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -14.475
+
+[node name="BrewCorrectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -13.938
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -6.969
+pitch_scale = 1.04
+
+[node name="ChangeCharacterPickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="GivePotionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Bubble" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -13.938
+pitch_scale = 0.69
+
+[node name="PowerUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -7.505
+
+[node name="ShooterShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -18.805
+
+[node name="ProjectileHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -80.0
+
+[node name="IndicateSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -9.649
